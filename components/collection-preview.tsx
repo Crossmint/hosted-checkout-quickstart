@@ -1,6 +1,5 @@
 "use client";
 
-import { TestPaymentsCard } from "@/components/test-card";
 import Image from "next/image";
 
 interface CollectionPreviewProps {
@@ -9,7 +8,6 @@ interface CollectionPreviewProps {
   imageUrl: string;
   imageSize?: number;
   imageAlt?: string;
-  showCard?: boolean;
 }
 
 export function CollectionPreview({
@@ -18,12 +16,10 @@ export function CollectionPreview({
   imageUrl,
   imageSize,
   imageAlt,
-  showCard,
 }: CollectionPreviewProps) {
   return (
-    <div className="rounded-l-2xl">
+    <>
       <h1 className="text-2xl font-bold text-center w-full mb-6">{title}</h1>
-
       <Image
         src={imageUrl}
         alt={imageAlt ?? title}
@@ -37,8 +33,6 @@ export function CollectionPreview({
         <span className="text-lg font-medium text-gray-700">Price</span>
         <span className="text-xl font-bold">{price}</span>
       </div>
-
-      {showCard && <TestPaymentsCard />}
-    </div>
+    </>
   );
 }

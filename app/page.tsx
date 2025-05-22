@@ -1,11 +1,17 @@
 import Image from "next/image";
 import { HomeContent } from "@/app/home";
+import { TestPaymentsCard } from "@/components/test-card";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
-      <main className="flex flex-col items-center sm:items-start">
-        <HomeContent />
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gray-50">
+      <main className="flex flex-col lg:flex-row items-start justify-center gap-8 w-full max-w-6xl">
+        <div className="flex">
+          <HomeContent />
+        </div>
+        <div className="w-full lg:w-100 flex justify-center lg:justify-start">
+          <TestPaymentsCard />
+        </div>
       </main>
       <footer className="flex flex-col gap-4 items-center justify-center">
         <div className="flex gap-6 flex-wrap items-center justify-center">

@@ -11,7 +11,7 @@ if (!collectionId) {
 export function HomeContent() {
   return (
     <div className="flex items-center justify-center py-8 md:pt-4">
-      <div className="bg-white rounded-2xl shadow-lg border max-w-4xl w-full gap-0 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-lg border max-w-4xl w-full gap-0">
         <div className="flex items-center justify-center p-6">
           <div className="rounded-l-2xl">
             <CollectionPreview

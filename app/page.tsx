@@ -5,11 +5,11 @@ import { TestPaymentsCard } from "@/components/test-card";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gray-50">
-      <main className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 w-full max-w-6xl">
-        <div className="w-full lg:w-auto flex justify-center lg:justify-start lg:pt-12">
+      <main className="flex flex-col lg:grid lg:grid-cols-3 items-center lg:items-start gap-8 w-full max-w-6xl">
+        <div className="lg:col-start-2 flex justify-center lg:justify-start lg:pt-12">
           <HomeContent />
         </div>
-        <div className="w-full lg:w-[400px] flex justify-center lg:justify-start">
+        <div className="lg:col-start-3 flex justify-center">
           <TestPaymentsCard />
         </div>
       </main>

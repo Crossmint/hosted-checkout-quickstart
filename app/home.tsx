@@ -1,6 +1,6 @@
 "use client";
 
-import { CrossmintEmbeddedCheckout } from "@crossmint/client-sdk-react-ui";
+import { CrossmintHostedCheckout } from "@crossmint/client-sdk-react-ui";
 import { CollectionPreview } from "@/components/collection-preview";
 
 const collectionId = process.env.NEXT_PUBLIC_CROSSMINT_COLLECTION_ID ?? "";
@@ -25,12 +25,22 @@ export function HomeContent() {
         </div>
         {/* Right: Checkout */}
         <div className="flex flex-col justify-center p-8">
-          <CrossmintEmbeddedCheckout
+          <CrossmintHostedCheckout
             lineItems={{
               collectionLocator: `crossmint:${collectionId}`, // Collection identifier: crossmint:<YOUR_COLLECTION_ID>[:TEMPLATE_ID] or <blockchain>:<contract-address>
               callData: {
                 totalPrice: "2", // Total price in your contract's currency (e.g., 0.001 ETH, 2 USDC)
                 // Arguments for your contract's mint function (names must match exactly, don't pass recipient)
+              },
+            }}
+            appearance={{
+              display: "popup", // Open in a popup
+              overlay: {
+                enabled: true, // Enable overlay
+              },
+              theme: {
+                button: "dark", // Dark button theme
+                checkout: "light", // Light checkout theme
               },
             }}
             payment={{
@@ -42,11 +52,6 @@ export function HomeContent() {
               fiat: {
                 enabled: true, // Enable fiat payments
                 defaultCurrency: "usd", // Default currency for fiat payments
-                allowedMethods: {
-                  googlePay: true, // Enable Google Pay
-                  applePay: true, // Enable Apple Pay
-                  card: true, // Enable card payments
-                },
               },
               receiptEmail: "receipt@crossmint.com", // Optional: Set receipt email
             }}

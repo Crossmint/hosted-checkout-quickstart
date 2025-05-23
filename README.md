@@ -39,7 +39,8 @@ Easily deploy the template to Vercel with the button below. You will need to set
 
 ## Setup
 
-    1. Clone the repository and navigate to the project folder:
+1. Clone the repository and navigate to the project folder:
+
     ```bash
     git clone https://github.com/crossmint/hosted-checkout-quickstart.git && cd hosted-checkout-quickstart
     ```

@@ -40,6 +40,7 @@ export function TestPaymentsCard() {
             await navigator.clipboard.writeText("4242 4242 4242 4242");
 
             button.disabled = true;
+            button.style.color = "var(--accent)";
             if (image) {
               image.src = "/check.svg";
               image.alt = "Copied";
@@ -50,6 +51,7 @@ export function TestPaymentsCard() {
 
             setTimeout(() => {
               button.disabled = false;
+              button.style.color = "";
               if (image) {
                 image.src = "/copy.svg";
                 image.alt = "Copy";
@@ -61,7 +63,7 @@ export function TestPaymentsCard() {
           }}
         >
           <Image src="/copy.svg" alt="Copy" width={16} height={16} />
-          <span>Copy</span>
+          <span className="w-10">Copy</span>
         </button>
       </div>
     </div>

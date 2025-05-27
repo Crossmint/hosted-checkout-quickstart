@@ -26,7 +26,6 @@ Allow your customers to buy NFTs with credit card and crypto payments, using Cro
 ### Prerequisites
 
 - Create a developer account in the [Staging Console](https://staging.crossmint.com/signin?callbackUrl=/console).
-- Create a [client-side API key](https://docs.crossmint.com/introduction/platform/api-keys/client-side) with the following scope: `orders.create`.
 - Create a [new collection](https://docs.crossmint.com/payments/guides/create-collection) or [import yours](https://docs.crossmint.com/payments/guides/register-collection) in the console, and have your `collectionId` ready.
 - Make sure your collection has at least one NFT configured
 - From the detail view of your collection, navigate to the Checkout tab to configure the pricing settings and enable Credit Card and Crypto payments.
@@ -91,9 +90,8 @@ Easily deploy the template to Vercel with the button below. You will need to set
 
 1. Create an account in the [Production Console](https://www.crossmint.com/signin?callbackUrl=/console), add your collection and configure the payment settings from the Checkout tab.
 2. Verify your account as the project owner and verify your collection. [Learn more](https://docs.crossmint.com/introduction/platform/account-verification) about verifications.
-3. Create a [production client-side API key](https://docs.crossmint.com/introduction/platform/api-keys/client-side) with the following scope: `orders.create`.
-4. Update your `.env` file with your production variables.
-5. Deploy your application to a production environment.
+3. Update your `.env` file with your production variables.
+4. Deploy your application to a production environment.
 
 ## Advanced Usage
 

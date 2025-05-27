@@ -28,6 +28,7 @@ export default function Home() {
                   />
                   <div className="flex items-center w-full justify-center">
                     <CrossmintHostedCheckout
+                      className="w-full"
                       lineItems={{
                         collectionLocator: `crossmint:${collectionId}`, // Collection identifier: crossmint:<YOUR_COLLECTION_ID>[:TEMPLATE_ID] or <blockchain>:<contract-address>
                         callData: {

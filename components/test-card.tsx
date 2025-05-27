@@ -31,11 +31,29 @@ export function TestPaymentsCard() {
         </span>
         <button
           type="button"
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-800 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-          onClick={() => navigator.clipboard.writeText("4242 4242 4242 4242")}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-800 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={async (event) => {
+            const button = event.currentTarget;
+            const image = button.querySelector("img");
+
+            await navigator.clipboard.writeText("4242 4242 4242 4242");
+
+            button.disabled = true;
+            if (image) {
+              image.src = "/check.svg";
+              image.alt = "Copied";
+            }
+
+            setTimeout(() => {
+              button.disabled = false;
+              if (image) {
+                image.src = "/copy.svg";
+                image.alt = "Copy";
+              }
+            }, 2000);
+          }}
         >
           <Image src="/copy.svg" alt="Copy" width={16} height={16} />
-          <span>Copy</span>
         </button>
       </div>
     </div>

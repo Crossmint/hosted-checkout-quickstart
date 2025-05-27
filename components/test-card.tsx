@@ -35,6 +35,7 @@ export function TestPaymentsCard() {
           onClick={async (event) => {
             const button = event.currentTarget;
             const image = button.querySelector("img");
+            const span = button.querySelector("span");
 
             await navigator.clipboard.writeText("4242 4242 4242 4242");
 
@@ -43,6 +44,9 @@ export function TestPaymentsCard() {
               image.src = "/check.svg";
               image.alt = "Copied";
             }
+            if (span) {
+              span.textContent = "Copied";
+            }
 
             setTimeout(() => {
               button.disabled = false;
@@ -50,10 +54,14 @@ export function TestPaymentsCard() {
                 image.src = "/copy.svg";
                 image.alt = "Copy";
               }
+              if (span) {
+                span.textContent = "Copy";
+              }
             }, 2000);
           }}
         >
           <Image src="/copy.svg" alt="Copy" width={16} height={16} />
+          <span>Copy</span>
         </button>
       </div>
     </div>

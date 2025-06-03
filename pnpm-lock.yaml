@@ -10,7 +10,10 @@ importers:
     dependencies:
       '@crossmint/client-sdk-react-ui':
         specifier: ^1.19.12
-        version: 1.19.13(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(react-dom@19.1.0(react@19.1.0))(react-native@0.74.0(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)
+        version: 1.19.13(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@datadog/browser-rum@6.9.0)(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(react-dom@19.1.0(react@19.1.0))(react-native@0.74.0(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)
+      '@datadog/browser-rum':
+        specifier: ^6.9.0
+        version: 6.9.0
       '@vercel/analytics':
         specifier: ^1.5.0
         version: 1.5.0(next@15.2.3(@babel/core@7.27.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
@@ -795,12 +798,26 @@ packages:
   '@datadog/browser-core@4.42.2':
     resolution: {integrity: sha512-LnkcdFyNRpMEuvV1ePfKdgRvYh+VqqAiVRoAmgObcuzdYdIwQSfcJp4GFbBgr5v7uF2uhAp/b96MIyKlqi0Ixg==}
 
+  '@datadog/browser-core@6.9.0':
+    resolution: {integrity: sha512-/X5F8HxO6jp4ENSus/HxZwBbXyGOooCISCZngsXApsf7vpfgzaco3Kvgku5AnMqAZf7io3ks1h5X+S2so2kDAA==}
+
   '@datadog/browser-logs@4.42.2':
     resolution: {integrity: sha512-idl9DilUGmWbmYb1D6VPmkpnhqaIdsQ08qjOw1c0QbtGUAFlFYyFCrugf2qwMt8QbJ8DqvEiwULTVAZOV9O4kA==}
     peerDependencies:
       '@datadog/browser-rum': 4.42.2
     peerDependenciesMeta:
       '@datadog/browser-rum':
+        optional: true
+
+  '@datadog/browser-rum-core@6.9.0':
+    resolution: {integrity: sha512-hk3sgSWARe0Y+Dl9SRgJI0daUgLcw9XH4+/qMiUgzaCNhrKNWq79SNjh3KKFfeTOcBvIYIH1Oam3BFiuxyOZAg==}
+
+  '@datadog/browser-rum@6.9.0':
+    resolution: {integrity: sha512-qY9v8NHKHJSpVhhDNSa5t4wZrgyxP6wolzRme755+tA55ul939IXNAIGxMQVCF4FYSXW1T48Tlthf0er1NkhXg==}
+    peerDependencies:
+      '@datadog/browser-logs': 6.9.0
+    peerDependenciesMeta:
+      '@datadog/browser-logs':
         optional: true
 
   '@dynamic-labs/assert-package-version@4.10.1':
@@ -6073,10 +6090,10 @@ snapshots:
       eventemitter3: 5.0.1
       preact: 10.26.6
 
-  '@crossmint/client-sdk-auth@1.2.7(@types/react@19.1.5)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)(viem@2.23.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))':
+  '@crossmint/client-sdk-auth@1.2.7(@datadog/browser-rum@6.9.0)(@types/react@19.1.5)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)(viem@2.23.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))':
     dependencies:
-      '@crossmint/client-sdk-base': 1.4.21
-      '@crossmint/common-sdk-auth': 1.0.30
+      '@crossmint/client-sdk-base': 1.4.21(@datadog/browser-rum@6.9.0)
+      '@crossmint/common-sdk-auth': 1.0.30(@datadog/browser-rum@6.9.0)
       '@crossmint/common-sdk-base': 0.4.2
       '@farcaster/auth-kit': 0.6.0(@types/react@19.1.5)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)(viem@2.23.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))
       jwt-decode: 4.0.0
@@ -6090,22 +6107,22 @@ snapshots:
       - utf-8-validate
       - viem
 
-  '@crossmint/client-sdk-base@1.4.21':
+  '@crossmint/client-sdk-base@1.4.21(@datadog/browser-rum@6.9.0)':
     dependencies:
       '@crossmint/client-sdk-window': 1.0.0
       '@crossmint/common-sdk-base': 0.4.2
-      '@datadog/browser-logs': 4.42.2
+      '@datadog/browser-logs': 4.42.2(@datadog/browser-rum@6.9.0)
       exponential-backoff: 3.1.1
       uuid: 9.0.1
       zod: 3.22.4
     transitivePeerDependencies:
       - '@datadog/browser-rum'
 
-  '@crossmint/client-sdk-react-base@0.2.13(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)':
+  '@crossmint/client-sdk-react-base@0.2.13(@datadog/browser-rum@6.9.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
-      '@crossmint/client-sdk-base': 1.4.21
+      '@crossmint/client-sdk-base': 1.4.21(@datadog/browser-rum@6.9.0)
       '@crossmint/common-sdk-base': 0.4.2
-      '@crossmint/wallets-sdk': 0.7.7(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
+      '@crossmint/wallets-sdk': 0.7.7(@datadog/browser-rum@6.9.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
       react: 19.1.0
     transitivePeerDependencies:
       - '@datadog/browser-rum'
@@ -6115,16 +6132,16 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@crossmint/client-sdk-react-ui@1.19.13(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(react-dom@19.1.0(react@19.1.0))(react-native@0.74.0(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)':
+  '@crossmint/client-sdk-react-ui@1.19.13(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@datadog/browser-rum@6.9.0)(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(react-dom@19.1.0(react@19.1.0))(react-native@0.74.0(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)':
     dependencies:
-      '@crossmint/client-sdk-auth': 1.2.7(@types/react@19.1.5)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)(viem@2.23.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))
-      '@crossmint/client-sdk-base': 1.4.21
-      '@crossmint/client-sdk-react-base': 0.2.13(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
+      '@crossmint/client-sdk-auth': 1.2.7(@datadog/browser-rum@6.9.0)(@types/react@19.1.5)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)(viem@2.23.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))
+      '@crossmint/client-sdk-base': 1.4.21(@datadog/browser-rum@6.9.0)
+      '@crossmint/client-sdk-react-base': 0.2.13(@datadog/browser-rum@6.9.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
       '@crossmint/client-sdk-window': 1.0.0
       '@crossmint/client-signers': 0.0.12
-      '@crossmint/common-sdk-auth': 1.0.30
+      '@crossmint/common-sdk-auth': 1.0.30(@datadog/browser-rum@6.9.0)
       '@crossmint/common-sdk-base': 0.4.2
-      '@crossmint/wallets-sdk': 0.7.7(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
+      '@crossmint/wallets-sdk': 0.7.7(@datadog/browser-rum@6.9.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
       '@dynamic-labs/ethereum': 4.10.1(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.23.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))(zod@3.22.4)
       '@dynamic-labs/sdk-react-core': 4.10.1(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react-native@0.74.0(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)
       '@dynamic-labs/solana': 4.10.1(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@types/react@19.1.5)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
@@ -6194,9 +6211,9 @@ snapshots:
     dependencies:
       zod: 3.22.4
 
-  '@crossmint/common-sdk-auth@1.0.30':
+  '@crossmint/common-sdk-auth@1.0.30(@datadog/browser-rum@6.9.0)':
     dependencies:
-      '@crossmint/client-sdk-base': 1.4.21
+      '@crossmint/client-sdk-base': 1.4.21(@datadog/browser-rum@6.9.0)
       '@crossmint/common-sdk-base': 0.4.2
     transitivePeerDependencies:
       - '@datadog/browser-rum'
@@ -6206,9 +6223,9 @@ snapshots:
       bs58: 5.0.0
       tweetnacl: 1.0.3
 
-  '@crossmint/wallets-sdk@0.7.7(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)':
+  '@crossmint/wallets-sdk@0.7.7(@datadog/browser-rum@6.9.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
-      '@crossmint/common-sdk-auth': 1.0.30
+      '@crossmint/common-sdk-auth': 1.0.30(@datadog/browser-rum@6.9.0)
       '@crossmint/common-sdk-base': 0.4.2
       '@hey-api/client-fetch': 0.8.1
       '@solana/web3.js': 1.98.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -6226,9 +6243,22 @@ snapshots:
 
   '@datadog/browser-core@4.42.2': {}
 
-  '@datadog/browser-logs@4.42.2':
+  '@datadog/browser-core@6.9.0': {}
+
+  '@datadog/browser-logs@4.42.2(@datadog/browser-rum@6.9.0)':
     dependencies:
       '@datadog/browser-core': 4.42.2
+    optionalDependencies:
+      '@datadog/browser-rum': 6.9.0
+
+  '@datadog/browser-rum-core@6.9.0':
+    dependencies:
+      '@datadog/browser-core': 6.9.0
+
+  '@datadog/browser-rum@6.9.0':
+    dependencies:
+      '@datadog/browser-core': 6.9.0
+      '@datadog/browser-rum-core': 6.9.0
 
   '@dynamic-labs/assert-package-version@4.10.1':
     dependencies:

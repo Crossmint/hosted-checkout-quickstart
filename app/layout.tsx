@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Providers } from "@/app/providers";
+import { DatadogAnalytics } from "@/components/datadog-analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
       "Allow your customers to buy NFTs with credit card and crypto payments, using Crossmint's hosted checkout. This quickstart provides a seamless integration for accepting payments in your dApp.",
     images: [
       {
-        url: "/ledger-pass.svg",
+        url: "https://cdn.prod.website-files.com/653a93effa45d5e5a3b8e1e8/66da361c471683f0df2891cd_preview.png",
         width: 1200,
         height: 630,
         alt: "Crossmint Hosted Checkout Quickstart",
@@ -41,7 +42,11 @@ export const metadata: Metadata = {
     title: "Hosted Checkout Quickstart",
     description:
       "Allow your customers to buy NFTs with credit card and crypto payments, using Crossmint's hosted checkout. This quickstart provides a seamless integration for accepting payments in your dApp.",
-    images: ["/ledger-pass.svg"],
+    images: [
+      {
+        url: "https://cdn.prod.website-files.com/653a93effa45d5e5a3b8e1e8/66da361c471683f0df2891cd_preview.png",
+      },
+    ],
     creator: "@crossmint",
   },
 };
@@ -58,6 +63,7 @@ export default function RootLayout({
       >
         <Providers>{children}</Providers>
         <Analytics />
+        <DatadogAnalytics />
       </body>
     </html>
   );

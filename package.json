@@ -1,5 +1,5 @@
 {
-  "name": "embedded-checkout-quickstart",
+  "name": "hosted-checkout-quickstart",
   "version": "0.1.0",
   "private": true,
   "scripts": {

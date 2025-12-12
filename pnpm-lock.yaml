@@ -16,13 +16,13 @@ importers:
         version: 6.9.0
       '@vercel/analytics':
         specifier: ^1.5.0
-        version: 1.5.0(next@15.2.6(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+        version: 1.5.0(next@15.2.7(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
       next:
-        specifier: 15.2.6
-        version: 15.2.6(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: 15.2.7
+        version: 15.2.7(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -763,8 +763,8 @@ packages:
   '@basis-theory-ai/react@1.0.1-beta.16':
     resolution: {integrity: sha512-ghB6muaC6I1rniLtvckhFTg7YP8k/F7fYRkvbyseAcVahQtncCO5Mjoqvn7GErm/jgS87g5acXr7O8v4jXg4Eg==}
     peerDependencies:
-      react: ^18.2.0 || ^19.0.0
-      react-dom: ^18.2.0 || ^19.0.0
+      react: 19.1.2
+      react-dom: 19.1.2
 
   '@coinbase/wallet-sdk@4.3.7':
     resolution: {integrity: sha512-z6e5XDw6EF06RqkeyEa+qD0dZ2ZbLci99vx3zwDY//XO8X7166tqKJrR2XlQnzVmtcUuJtCd5fCvr9Cu6zzX7w==}
@@ -1391,8 +1391,8 @@ packages:
   '@mysten/wallet-standard@0.13.29':
     resolution: {integrity: sha512-NR9I3HprticwT3HRPQ36VojV5Gjp+S/iJYdib3qLVrSiCOQjoilmYzA53pDu/rFDSrljskgV/0fAj9ynF9nVFg==}
 
-  '@next/env@15.2.6':
-    resolution: {integrity: sha512-kp1Mpm4K1IzSSJ5ZALfek0JBD2jBw9VGMXR/aT7ykcA2q/ieDARyBzg+e8J1TkeIb5AFj/YjtZdoajdy5uNy6w==}
+  '@next/env@15.2.7':
+    resolution: {integrity: sha512-jSxlawUghGPFc7jAzL+Sw4EokhNJ1wGw7JSX0ozGxLw9i41aQGll+MqCMu7uMZO9xicb71e3GcGLJx8vXS6zEQ==}
 
   '@next/swc-darwin-arm64@15.2.5':
     resolution: {integrity: sha512-4OimvVlFTbgzPdA0kh8A1ih6FN9pQkL4nPXGqemEYgk+e7eQhsst/p35siNNqA49eQA6bvKZ1ASsDtu9gtXuog==}
@@ -3825,9 +3825,10 @@ packages:
   neverthrow@6.2.2:
     resolution: {integrity: sha512-POR1FACqdK9jH0S2kRPzaZEvzT11wsOxLW520PQV/+vKi9dQe+hXq19EiOvYx7lSRaF5VB9lYGsPInynrnN05w==}
 
-  next@15.2.6:
-    resolution: {integrity: sha512-DIKFctUpZoCq5ok2ztVU+PqhWsbiqM9xNP7rHL2cAp29NQcmDp7Y6JnBBhHRbFt4bCsCZigj6uh+/Gwh2158Wg==}
+  next@15.2.7:
+    resolution: {integrity: sha512-Tno/NgqoEz7UQpuZSbADLp90CFSUy2RCcHlgRfFtSrNOTefnoIQRbPy5oO7Dhj3DChcw/vd1S8dKHVVlk0WjLg==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -7387,7 +7388,7 @@ snapshots:
       - '@gql.tada/vue-support'
       - typescript
 
-  '@next/env@15.2.6': {}
+  '@next/env@15.2.7': {}
 
   '@next/swc-darwin-arm64@15.2.5':
     optional: true
@@ -8565,9 +8566,9 @@ snapshots:
 
   '@vanilla-extract/private@1.0.7': {}
 
-  '@vercel/analytics@1.5.0(next@15.2.6(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
+  '@vercel/analytics@1.5.0(next@15.2.7(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
     optionalDependencies:
-      next: 15.2.6(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next: 15.2.7(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
 
   '@vue/reactivity@3.5.25':
@@ -10898,9 +10899,9 @@ snapshots:
 
   neverthrow@6.2.2: {}
 
-  next@15.2.6(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  next@15.2.7(@babel/core@7.27.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@next/env': 15.2.6
+      '@next/env': 15.2.7
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.15
       busboy: 1.6.0

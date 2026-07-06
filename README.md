@@ -22,6 +22,18 @@ Allow your customers to buy NFTs with credit card and crypto payments, using Cro
 - Accept fiat payments via credit, debit card, Apple Pay and Google Pay
 - Accept crypto payments
 - Deliver NFTs directly to a buyer's wallet or email address
+- Detect the on-chain delivery and show a success screen with a link to the transaction on the block explorer, plus next steps to implement it yourself
+
+### How delivery detection works
+
+The hosted checkout runs on Crossmint's page, so this app doesn't receive a
+callback when the order completes. Instead, when the buyer opens the checkout,
+the app resolves the recipient email to its wallet address (via a draft order
+quote, using the same public client API key) and polls Base Sepolia public
+RPCs for the incoming ERC-721 transfer. The matching log provides the real
+mint transaction hash shown on the success screen. See
+[`lib/delivery-watcher.ts`](./lib/delivery-watcher.ts) — no server-side API
+key or extra environment variables required.
 
 ### Prerequisites
 

@@ -75,6 +75,56 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Success screen check animation */
+.success-check-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-check-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    oklch(from var(--accent) l c h / 0.18) 0%,
+    transparent 70%
+  );
+  animation: success-glow 0.9s ease-out both;
+}
+
+.success-check-circle {
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: success-draw 0.6s ease-out 0.1s forwards;
+}
+
+.success-check-mark {
+  stroke-dasharray: 34;
+  stroke-dashoffset: 34;
+  animation: success-draw 0.35s ease-out 0.6s forwards;
+}
+
+@keyframes success-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes success-glow {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

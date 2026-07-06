@@ -41,65 +41,55 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gray-50">
       {view === "shop" && (
-        <main className="flex flex-col lg:grid lg:grid-cols-3 items-center lg:items-start gap-8 w-full max-w-6xl">
-          <div className="lg:col-start-2 flex justify-center lg:justify-start lg:pt-12">
-            <div className="flex items-center justify-center py-8 md:pt-4">
-              <div className="bg-white rounded-2xl shadow-lg border max-w-4xl w-full gap-0">
-                <div className="flex items-center justify-center p-6">
-                  <div className="rounded-l-2xl">
-                    <CollectionPreview
-                      title={ITEM.name}
-                      price={ITEM.price}
-                      imageUrl={ITEM.imageUrl}
-                      imageSize={360}
-                      imageAlt={ITEM.name}
-                    />
-                    <div className="flex items-center w-full justify-center">
-                      <CrossmintHostedCheckout
-                        className="w-full"
-                        onClick={startWatching}
-                        lineItems={{
-                          collectionLocator: `crossmint:${collectionId}`, // Collection identifier: crossmint:<YOUR_COLLECTION_ID>[:TEMPLATE_ID] or <blockchain>:<contract-address>
-                          callData: {
-                            totalPrice: "2", // Total price in your contract's currency (e.g., 0.001 ETH, 2 USDC)
-                            // Arguments for your contract's mint function (names must match exactly, don't pass recipient)
-                          },
-                        }}
-                        appearance={{
-                          display: "popup", // Open in a popup
-                          overlay: {
-                            enabled: true, // Enable overlay
-                          },
-                          theme: {
-                            button: "dark", // Dark button theme
-                            checkout: "light", // Light checkout theme
-                          },
-                        }}
-                        payment={{
-                          crypto: {
-                            enabled: true, // Enable crypto payments
-                            defaultChain: "base-sepolia", // Default chain for crypto payments
-                            defaultCurrency: "usdc", // Default currency for crypto payments
-                          },
-                          fiat: {
-                            enabled: true, // Enable fiat payments
-                            defaultCurrency: "usd", // Default currency for fiat payments
-                          },
-                          receiptEmail: "receipt@crossmint.com", // Optional: Set receipt email
-                        }}
-                        recipient={{
-                          email: RECIPIENT_EMAIL, // NFTs will be delivered to this email's wallet
-                          // Or use walletAddress: "0x..." for direct delivery
-                        }}
-                        locale="en-US" // Set interface language
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <main className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10 w-full max-w-5xl">
+          <div className="bg-white rounded-2xl shadow-lg border w-full max-w-md p-6">
+            <CollectionPreview
+              title={ITEM.name}
+              price={ITEM.price}
+              imageUrl={ITEM.imageUrl}
+              imageSize={360}
+              imageAlt={ITEM.name}
+            />
+            <CrossmintHostedCheckout
+              className="w-full"
+              onClick={startWatching}
+              lineItems={{
+                collectionLocator: `crossmint:${collectionId}`, // Collection identifier: crossmint:<YOUR_COLLECTION_ID>[:TEMPLATE_ID] or <blockchain>:<contract-address>
+                callData: {
+                  totalPrice: "2", // Total price in your contract's currency (e.g., 0.001 ETH, 2 USDC)
+                  // Arguments for your contract's mint function (names must match exactly, don't pass recipient)
+                },
+              }}
+              appearance={{
+                display: "popup", // Open in a popup
+                overlay: {
+                  enabled: true, // Enable overlay
+                },
+                theme: {
+                  button: "dark", // Dark button theme
+                  checkout: "light", // Light checkout theme
+                },
+              }}
+              payment={{
+                crypto: {
+                  enabled: true, // Enable crypto payments
+                  defaultChain: "base-sepolia", // Default chain for crypto payments
+                  defaultCurrency: "usdc", // Default currency for crypto payments
+                },
+                fiat: {
+                  enabled: true, // Enable fiat payments
+                  defaultCurrency: "usd", // Default currency for fiat payments
+                },
+                receiptEmail: "receipt@crossmint.com", // Optional: Set receipt email
+              }}
+              recipient={{
+                email: RECIPIENT_EMAIL, // NFTs will be delivered to this email's wallet
+                // Or use walletAddress: "0x..." for direct delivery
+              }}
+              locale="en-US" // Set interface language
+            />
           </div>
-          <div className="lg:col-start-3 flex justify-center">
+          <div className="w-full max-w-md lg:max-w-sm">
             <TestPaymentsCard />
           </div>
         </main>

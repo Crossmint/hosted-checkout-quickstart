@@ -21,6 +21,7 @@ const RPC_URLS = [
 // keccak256("Transfer(address,address,uint256)")
 const TRANSFER_TOPIC =
   "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
+const MINT_FROM_TOPIC = `0x${"0".repeat(64)}`;
 
 const POLL_INTERVAL_MS = 3_000;
 const WATCH_TIMEOUT_MS = 10 * 60 * 1_000;
@@ -69,7 +70,7 @@ function apiBaseUrl(apiKey: string) {
     : "https://staging.crossmint.com";
 }
 
-let cachedWalletPromise: Promise<string> | null = null;
+const cachedWalletPromises = new Map<string, Promise<string>>();
 
 /**
  * Resolves the custodial wallet behind the recipient email by creating a
@@ -81,10 +82,12 @@ function resolveRecipientWallet(
   collectionId: string,
   recipientEmail: string
 ): Promise<string> {
-  if (cachedWalletPromise) {
-    return cachedWalletPromise;
+  const cacheKey = `${apiKey}:${collectionId}:${recipientEmail}`;
+  const cached = cachedWalletPromises.get(cacheKey);
+  if (cached) {
+    return cached;
   }
-  cachedWalletPromise = (async () => {
+  const walletPromise = (async () => {
     const res = await fetch(`${apiBaseUrl(apiKey)}/api/2022-06-09/orders`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-API-KEY": apiKey },
@@ -108,10 +111,11 @@ function resolveRecipientWallet(
     }
     return walletAddress;
   })();
-  cachedWalletPromise.catch(() => {
-    cachedWalletPromise = null;
+  cachedWalletPromises.set(cacheKey, walletPromise);
+  walletPromise.catch(() => {
+    cachedWalletPromises.delete(cacheKey);
   });
-  return cachedWalletPromise;
+  return walletPromise;
 }
 
 async function findDeliveryLog(
@@ -123,7 +127,10 @@ async function findDeliveryLog(
     {
       fromBlock: `0x${fromBlock.toString(16)}`,
       toBlock: "latest",
-      topics: [TRANSFER_TOPIC, null, paddedWallet],
+      // Mints only (from = zero address) into the recipient wallet. The
+      // collection contract isn't known client-side (the order quote doesn't
+      // expose it), so the recipient + mint filters bound what can match.
+      topics: [TRANSFER_TOPIC, MINT_FROM_TOPIC, paddedWallet],
     },
   ]);
   // ERC-721 Transfer has 4 topics (tokenId indexed); ERC-20 only has 3.

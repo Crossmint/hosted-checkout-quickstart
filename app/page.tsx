@@ -26,7 +26,7 @@ type View = "shop" | "success" | "next-steps";
 
 export default function Home() {
   const [view, setView] = useState<View>("shop");
-  const { delivery, startWatching, reset } = useDeliveryWatcher({
+  const { delivery, startWatching } = useDeliveryWatcher({
     apiKey,
     collectionId,
     recipientEmail: RECIPIENT_EMAIL,
@@ -119,13 +119,7 @@ export default function Home() {
 
       {view === "next-steps" && (
         <main className="flex justify-center w-full py-8">
-          <NextSteps
-            delivery={delivery}
-            onRestart={() => {
-              reset();
-              setView("shop");
-            }}
-          />
+          <NextSteps />
         </main>
       )}
 

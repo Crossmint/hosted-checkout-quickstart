@@ -120,20 +120,10 @@ export function SuccessScreen({
         </div>
       </div>
 
-      <a
-        href={txUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 transition-colors"
-      >
-        View transaction on explorer
-        <ExternalLinkIcon />
-      </a>
-
       <button
         type="button"
         onClick={onContinue}
-        className="mt-2.5 w-full rounded-xl bg-gray-900 px-4 py-3 font-medium text-white hover:bg-gray-800 transition-colors"
+        className="mt-4 w-full rounded-xl bg-gray-900 px-4 py-3 font-medium text-white hover:bg-gray-800 transition-colors"
       >
         Continue
       </button>

@@ -73,7 +73,7 @@ let cachedWalletPromise: Promise<string> | null = null;
 
 /**
  * Resolves the custodial wallet behind the recipient email by creating a
- * draft (unpaid) order — the same quote call the checkout itself performs.
+ * draft (unpaid) order, the same quote call the checkout itself performs.
  * Works with the public client-side API key; no server key needed.
  */
 function resolveRecipientWallet(

@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { EXPLORER_BASE_URL, type Delivery } from "@/lib/delivery-watcher";
 
 interface NextStepCard {
   title: string;
@@ -14,9 +13,8 @@ interface NextStepCard {
 
 const CARDS: NextStepCard[] = [
   {
-    title: "Implement it in under 5 minutes",
-    description:
-      "This demo is open source. Clone the quickstart and run it with your own collection.",
+    title: "Implement it",
+    description: "Clone the quickstart and run it with your own collection.",
     linkLabel: "Get the code",
     href: "https://github.com/Crossmint/hosted-checkout-quickstart",
     icon: (
@@ -27,8 +25,7 @@ const CARDS: NextStepCard[] = [
   },
   {
     title: "Talk to our team",
-    description:
-      "Get pricing, production guidance, and answers about your use case from a real human.",
+    description: "Get pricing and guidance for your use case.",
     linkLabel: "Contact sales",
     href: "https://www.crossmint.com/contact",
     featured: true,
@@ -49,8 +46,7 @@ const CARDS: NextStepCard[] = [
   },
   {
     title: "Explore the docs",
-    description:
-      "Card and crypto checkout, embedded components, and the full payments API reference.",
+    description: "The full payments suite, from checkout to API.",
     linkLabel: "Payments overview",
     href: "https://docs.crossmint.com/payments/overview",
     icon: (
@@ -71,24 +67,12 @@ const CARDS: NextStepCard[] = [
   },
 ];
 
-interface NextStepsProps {
-  delivery: Delivery | null;
-  onRestart: () => void;
-}
-
-export function NextSteps({ delivery, onRestart }: NextStepsProps) {
+export function NextSteps() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 w-full max-w-3xl flex flex-col items-center">
-      <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3">
-        Demo complete
-      </span>
-      <h1 className="text-3xl font-bold text-center text-balance">
+      <h1 className="text-3xl font-bold text-center text-balance mb-10">
         Ship this in your app
       </h1>
-      <p className="text-gray-500 text-center mt-3 mb-8 max-w-lg text-balance">
-        Everything you just experienced — card payment, on-chain delivery — is
-        a single React component. Pick your next step.
-      </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
         {CARDS.map((card, index) => (
@@ -98,7 +82,7 @@ export function NextSteps({ delivery, onRestart }: NextStepsProps) {
             target="_blank"
             rel="noopener noreferrer"
             style={{ animationDelay: `${150 + index * 100}ms` }}
-            className={`animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards animation-duration-500 group flex flex-col rounded-2xl border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg ${
+            className={`animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards animation-duration-500 group flex flex-col items-center text-center rounded-2xl border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg ${
               card.featured
                 ? "border-accent/60 ring-1 ring-accent/40 hover:ring-accent"
                 : "hover:border-gray-300"
@@ -113,10 +97,8 @@ export function NextSteps({ delivery, onRestart }: NextStepsProps) {
             >
               {card.icon}
             </div>
-            <h2 className="font-semibold text-gray-900 text-balance">
-              {card.title}
-            </h2>
-            <p className="mt-1.5 text-sm text-gray-500 flex-1">
+            <h2 className="font-semibold text-gray-900">{card.title}</h2>
+            <p className="mt-1.5 text-sm text-gray-500 flex-1 text-balance">
               {card.description}
             </p>
             <span
@@ -131,26 +113,6 @@ export function NextSteps({ delivery, onRestart }: NextStepsProps) {
             </span>
           </a>
         ))}
-      </div>
-
-      <div className="mt-8 flex items-center gap-6 text-sm text-gray-500">
-        {delivery && (
-          <a
-            href={`${EXPLORER_BASE_URL}/tx/${delivery.txHash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-900 underline underline-offset-4 decoration-gray-300"
-          >
-            View your transaction
-          </a>
-        )}
-        <button
-          type="button"
-          onClick={onRestart}
-          className="hover:text-gray-900 underline underline-offset-4 decoration-gray-300"
-        >
-          Restart demo
-        </button>
       </div>
     </div>
   );

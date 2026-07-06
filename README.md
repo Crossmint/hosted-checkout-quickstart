@@ -32,7 +32,7 @@ the app resolves the recipient email to its wallet address (via a draft order
 quote, using the same public client API key) and polls Base Sepolia public
 RPCs for the incoming ERC-721 transfer. The matching log provides the real
 mint transaction hash shown on the success screen. See
-[`lib/delivery-watcher.ts`](./lib/delivery-watcher.ts) — no server-side API
+[`lib/delivery-watcher.ts`](./lib/delivery-watcher.ts). No server-side API
 key or extra environment variables required.
 
 ### Prerequisites

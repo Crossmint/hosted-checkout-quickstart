@@ -41,7 +41,8 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gray-50">
       {view === "shop" && (
-        <main className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10 w-full max-w-5xl">
+        <main className="flex flex-col items-center lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center gap-6 w-full max-w-6xl">
+          <div className="hidden lg:block" />
           <div className="bg-white rounded-2xl shadow-lg border w-full max-w-md p-6">
             <CollectionPreview
               title={ITEM.name}
@@ -89,7 +90,7 @@ export default function Home() {
               locale="en-US" // Set interface language
             />
           </div>
-          <div className="w-full max-w-md lg:max-w-sm">
+          <div className="w-full max-w-md lg:w-80 lg:justify-self-start lg:ml-8">
             <TestPaymentsCard />
           </div>
         </main>

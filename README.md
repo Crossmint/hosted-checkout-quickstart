@@ -89,6 +89,10 @@ Easily deploy the template to Vercel with the button below. You will need to set
 
 ## How delivery detection works
 
+<div align="center">
+<img src="./assets/success.png" alt="Success screen with the mint transaction linked on the block explorer" width="600">
+</div>
+
 The hosted checkout runs on Crossmint's page, so this app doesn't receive a
 callback when the order completes. Instead, when the buyer opens the checkout,
 the app resolves the recipient email to its wallet address (via a draft order

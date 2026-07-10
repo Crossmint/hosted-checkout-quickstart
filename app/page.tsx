@@ -70,6 +70,12 @@ export default function Home() {
                   button: "dark", // Dark button theme
                   checkout: "light", // Light checkout theme
                 },
+                rules: {
+                  // Lock the delivery destination to the prefilled recipient
+                  DestinationInput: {
+                    display: "hidden",
+                  },
+                },
               }}
               payment={{
                 crypto: {

@@ -109,6 +109,20 @@ The demo is configured for Base Sepolia. To use another chain, update the
 recipient email the watcher tracks is also set in
 [`app/page.tsx`](./app/page.tsx).
 
+## Memecoin checkout on Robinhood Chain
+
+This quickstart also includes a hosted checkout example for buying a fungible (ERC-20) memecoin token on Robinhood Chain mainnet. Navigate to `/robinhood-memecoin` to use it.
+
+1. Make sure your project has the `memeTokensCheckout` add-on enabled.
+2. Copy `.env.template` to `.env.local` and fill in:
+   - `NEXT_PUBLIC_CROSSMINT_API_KEY` — your client-side API key
+   - `NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS` — the ERC-20 token contract on Robinhood Chain
+   - `NEXT_PUBLIC_RECIPIENT_WALLET_ADDRESS` — the wallet address that will receive the tokens
+3. The checkout uses `executionParameters: { mode: "exact-in", amount: "5", maxSlippageBps: "500" }` to buy $5.00 worth of the token with fiat.
+4. The watcher in [`lib/token-delivery-watcher.ts`](./lib/token-delivery-watcher.ts) polls Robinhood Chain public RPCs for an incoming ERC-20 `Transfer` event to the recipient wallet and shows the transaction on the success screen.
+
+> Robinhood Chain memecoin checkout is currently enabled on mainnet only (`robinhood-chain`, chainId 4663). Testnet memecoin checkout is not configured in Crossmint's backend yet.
+
 ## Using in production
 
 1. Create an account in the [Production Console](https://www.crossmint.com/signin?callbackUrl=/console), add your collection and configure the payment settings from the Checkout tab.

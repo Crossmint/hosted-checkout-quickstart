@@ -32,6 +32,8 @@ interface SuccessScreenProps {
   itemPrice: string;
   itemImageUrl: string;
   onContinue: () => void;
+  networkName?: string;
+  explorerBaseUrl?: string;
 }
 
 export function SuccessScreen({
@@ -40,9 +42,11 @@ export function SuccessScreen({
   itemPrice,
   itemImageUrl,
   onContinue,
+  networkName = "Base Sepolia",
+  explorerBaseUrl = EXPLORER_BASE_URL,
 }: SuccessScreenProps) {
-  const txUrl = `${EXPLORER_BASE_URL}/tx/${delivery.txHash}`;
-  const walletUrl = `${EXPLORER_BASE_URL}/address/${delivery.walletAddress}`;
+  const txUrl = `${explorerBaseUrl}/tx/${delivery.txHash}`;
+  const walletUrl = `${explorerBaseUrl}/address/${delivery.walletAddress}`;
 
   return (
     <div className="animate-in fade-in zoom-in-95 duration-500 bg-white rounded-2xl shadow-lg border w-full max-w-md p-8 flex flex-col items-center">
@@ -92,7 +96,7 @@ export function SuccessScreen({
         </div>
         <div className="flex items-center justify-between p-3.5">
           <span className="text-gray-500">Network</span>
-          <span className="font-medium text-gray-900">Base Sepolia</span>
+          <span className="font-medium text-gray-900">{networkName}</span>
         </div>
         <div className="flex items-center justify-between p-3.5">
           <span className="text-gray-500">Delivered to</span>

@@ -7,51 +7,33 @@ import { CollectionPreview } from "@/components/collection-preview";
 import { TestPaymentsCard } from "@/components/test-card";
 import { SuccessScreen } from "@/components/success-screen";
 import { NextSteps } from "@/components/next-steps";
-import { useDeliveryWatcher } from "@/lib/delivery-watcher";
+import {
+  useTokenDeliveryWatcher,
+  EXPLORER_BASE_URL,
+  NETWORK_NAME,
+} from "@/lib/token-delivery-watcher";
 
 const apiKey = process.env.NEXT_PUBLIC_CROSSMINT_API_KEY ?? "";
-const collectionId = process.env.NEXT_PUBLIC_CROSSMINT_COLLECTION_ID ?? "";
+const tokenContractAddress = process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS ?? "";
+const recipientWalletAddress = process.env.NEXT_PUBLIC_RECIPIENT_WALLET_ADDRESS ?? "";
 
-const RECIPIENT_EMAIL = "buyer@crossmint.com";
 const ITEM = {
-  name: "Sonic Ledger Pass",
-  price: "$2.00",
+  name: "Robinhood Memecoin",
+  price: "$5.00",
   imageUrl: "/ledger-pass.svg",
 };
 
+const USD_AMOUNT = "5";
+const MAX_SLIPPAGE_BPS = "500";
+
+const RECEIPT_EMAIL = "receipt@crossmint.com";
+
 type View = "shop" | "success" | "next-steps";
 
-export default function Home() {
+export default function RobinhoodMemecoinHome() {
   const [view, setView] = useState<View>("shop");
-
-  if (!collectionId) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50">
-        <div className="bg-white rounded-2xl shadow-lg border w-full max-w-md p-6 text-center">
-          <h1 className="text-2xl font-bold mb-2">Setup required</h1>
-          <p className="text-gray-600 mb-4">
-            Add your <code>NEXT_PUBLIC_CROSSMINT_COLLECTION_ID</code> to{" "}
-            <code>.env.local</code> to run the NFT checkout demo.
-          </p>
-          <p className="text-sm text-gray-500">
-            Or try the{" "}
-            <a
-              href="/robinhood-memecoin"
-              className="underline underline-offset-4 text-gray-900"
-            >
-              Robinhood memecoin checkout
-            </a>
-            {" "}example.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  const { delivery, startWatching } = useDeliveryWatcher({
-    apiKey,
-    collectionId,
-    recipientEmail: RECIPIENT_EMAIL,
+  const { delivery, startWatching } = useTokenDeliveryWatcher({
+    recipientWalletAddress,
   });
 
   useEffect(() => {
@@ -59,6 +41,25 @@ export default function Home() {
       setView("success");
     }
   }, [delivery]);
+
+  if (!tokenContractAddress || !recipientWalletAddress) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50">
+        <div className="bg-white rounded-2xl shadow-lg border w-full max-w-md p-6 text-center">
+          <h1 className="text-2xl font-bold mb-2">Setup required</h1>
+          <p className="text-gray-600 mb-4">
+            Add <code>NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS</code> and{" "}
+            <code>NEXT_PUBLIC_RECIPIENT_WALLET_ADDRESS</code> to{" "}
+            <code>.env.local</code> to run the Robinhood memecoin checkout demo.
+          </p>
+          <p className="text-sm text-gray-500">
+            The token locator will be{" "}
+            <code>robinhood-chain:YOUR_TOKEN_CONTRACT_ADDRESS</code>.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gray-50">
@@ -77,23 +78,23 @@ export default function Home() {
               className="w-full"
               onClick={startWatching}
               lineItems={{
-                collectionLocator: `crossmint:${collectionId}`, // Collection identifier: crossmint:<YOUR_COLLECTION_ID>[:TEMPLATE_ID] or <blockchain>:<contract-address>
-                callData: {
-                  totalPrice: "2", // Total price in your contract's currency (e.g., 0.001 ETH, 2 USDC)
-                  // Arguments for your contract's mint function (names must match exactly, don't pass recipient)
+                tokenLocator: `robinhood-chain:${tokenContractAddress}`,
+                executionParameters: {
+                  mode: "exact-in",
+                  amount: USD_AMOUNT,
+                  maxSlippageBps: MAX_SLIPPAGE_BPS,
                 },
               }}
               appearance={{
-                display: "popup", // Open in a popup
+                display: "popup",
                 overlay: {
-                  enabled: true, // Enable overlay
+                  enabled: true,
                 },
                 theme: {
-                  button: "dark", // Dark button theme
-                  checkout: "light", // Light checkout theme
+                  button: "dark",
+                  checkout: "light",
                 },
                 rules: {
-                  // Lock the delivery destination to the prefilled recipient
                   DestinationInput: {
                     display: "hidden",
                   },
@@ -101,21 +102,19 @@ export default function Home() {
               }}
               payment={{
                 crypto: {
-                  enabled: true, // Enable crypto payments
-                  defaultChain: "base-sepolia", // Default chain for crypto payments
-                  defaultCurrency: "usdc", // Default currency for crypto payments
+                  enabled: false,
                 },
                 fiat: {
-                  enabled: true, // Enable fiat payments
-                  defaultCurrency: "usd", // Default currency for fiat payments
+                  enabled: true,
+                  defaultCurrency: "usd",
                 },
-                receiptEmail: "receipt@crossmint.com", // Optional: Set receipt email
+                defaultMethod: "fiat",
+                receiptEmail: RECEIPT_EMAIL,
               }}
               recipient={{
-                email: RECIPIENT_EMAIL, // NFTs will be delivered to this email's wallet
-                // Or use walletAddress: "0x..." for direct delivery
+                walletAddress: recipientWalletAddress,
               }}
-              locale="en-US" // Set interface language
+              locale="en-US"
             />
           </div>
           <div className="w-full max-w-md lg:w-80 lg:justify-self-start lg:ml-8">
@@ -132,6 +131,8 @@ export default function Home() {
             itemPrice={ITEM.price}
             itemImageUrl={ITEM.imageUrl}
             onContinue={() => setView("next-steps")}
+            networkName={NETWORK_NAME}
+            explorerBaseUrl={EXPLORER_BASE_URL}
           />
         </main>
       )}
